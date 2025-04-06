@@ -16,7 +16,7 @@ make
 ./main
 ```
 
-## 🎥 Demo
+## 🎥 Video Demo
 https://github.com/user-attachments/assets/e8c84836-9a60-41d6-baa8-ce02fa3300d1
 
 ## 🧠 Solvability
