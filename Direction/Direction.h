@@ -1,23 +1,37 @@
 #pragma once
 #include <ostream>
 #include <array>
+#include <cassert>
+#include "../Random.h"
 
 class Direction
 {
 public:
-    const static enum Directions
+    enum Directions
     {
-        up, left, down, right, endDirections,
+        up, down, left, right, endDirections,
     };
 
-    const static std::array<std::string, 4> directions{"up", "left", "down", "right"};
+    constexpr static std::array<std::string_view, endDirections> strDirections{"up", "down", "left", "right"};
     
-
 private:
     Directions m_direction{};
 
 public:
     Direction(Directions d);
-    friend std::ostream& operator<< (std::ostream& stream, Direction d); 
-    friend Direction operator-(Direction d);
+
+    Directions getDirection()const;
+    friend std::ostream& operator<< (std::ostream& stream, const Direction& d); 
+    friend Direction operator-(const Direction& d);
+
+    operator std::size_t(){
+        return static_cast<std::size_t>(m_direction); 
+    }
+
+    static Direction randomDirection()
+    {
+        Directions rd{static_cast<Directions>(Random::get(0, endDirections - 1))};
+
+        return Direction{rd};
+    }
 };
