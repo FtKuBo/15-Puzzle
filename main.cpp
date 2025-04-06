@@ -9,7 +9,7 @@
 
 namespace GameSettings
 {
-    constexpr int g_consolelines(25);
+    constexpr int g_consolelines(100);
 }
 
 namespace UserInput
@@ -65,7 +65,9 @@ int main()
     
     b.randomize();
 
+    for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
     std::cout << b;
+    for(int i{0} ; i < GameSettings::g_consolelines/3; i++) std::cout << '\n';
 
     while(true)
     {
@@ -80,6 +82,7 @@ int main()
         {
             for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
             std::cout << b;
+            for(int i{0} ; i < GameSettings::g_consolelines/3; i++) std::cout << '\n';
         }
         if(b.isSolved())
         {
