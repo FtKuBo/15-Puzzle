@@ -21,3 +21,6 @@ https://github.com/user-attachments/assets/e8c84836-9a60-41d6-baa8-ce02fa3300d1
 
 ## 🧠 Solvability
 The puzzle uses an algorithm that ensures the randomized board is always solvable. [Learn more about 15-puzzle solvability.](https://www.geeksforgeeks.org/check-instance-15-puzzle-solvable/)
+
+## 📚 Acknowledgments
+This project was built with knowledge gained from [LearnCpp.com](https://www.learncpp.com).
