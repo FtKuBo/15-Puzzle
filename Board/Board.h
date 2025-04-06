@@ -3,6 +3,7 @@
 #include "../Tile/Tile.h"
 #include "../Direction/Direction.h"
 #include "../Point/Point.h"
+#include "../Random.h"
 
 namespace BoardConfig
 {
@@ -19,6 +20,7 @@ private:
 public:
     Board();
     bool moveTile(const Direction& d);
+    void randomize();
     bool isSolved() const;
     friend std::ostream& operator<< (std::ostream& steam, const Board& b);
 };

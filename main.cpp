@@ -63,13 +63,9 @@ int main()
 {
     Board b{};
     
-    for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
-    
+    b.randomize();
+
     std::cout << b;
-
-    for(int i{0} ; i < 4 ; i++)
-        std::cout << "Generating random direction..." << Direction::randomDirection() << '\n';
-
 
     while(true)
     {
