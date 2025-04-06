@@ -1,6 +1,8 @@
 #pragma once
-#include "../Tile/Tile.h"
 #include <ostream>
+#include "../Tile/Tile.h"
+#include "../Direction/Direction.h"
+#include "../Point/Point.h"
 
 namespace BoardConfig
 {
@@ -16,7 +18,7 @@ private:
 
 public:
     Board();
+    bool moveTile(const Direction& d);
     bool isSolved() const;
-    void slideTiles();
-    friend std::ostream& operator<< (std::ostream& steam, Board);
+    friend std::ostream& operator<< (std::ostream& steam, const Board& b);
 };

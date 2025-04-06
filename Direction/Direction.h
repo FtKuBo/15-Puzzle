@@ -21,10 +21,12 @@ public:
     Direction(Directions d);
 
     Directions getDirection()const;
-    friend std::ostream& operator<< (std::ostream& stream, const Direction& d); 
+    
+    friend std::ostream& operator<< (std::ostream& streamß, const Direction& d); 
     friend Direction operator-(const Direction& d);
 
-    operator std::size_t(){
+    operator std::size_t()const 
+    {
         return static_cast<std::size_t>(m_direction); 
     }
 

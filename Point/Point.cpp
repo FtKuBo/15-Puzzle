@@ -1,10 +1,19 @@
 #include <iostream>
 #include "Point.h"
-#include "../Board/Board.h"
 
 Point::Point(int y, int x)
 : m_y{y}, m_x{x}
 {
+}
+
+int Point::getY()
+{
+    return m_y;
+}
+
+int Point::getX()
+{
+    return m_x;
 }
 
 Point Point::getAdjacentPoint(const Direction& d)
@@ -12,24 +21,16 @@ Point Point::getAdjacentPoint(const Direction& d)
     switch (d.getDirection())
     {
     case Direction::up:
-        if(m_y > 0)
-            return Point{m_y-1, m_x};
-        break;
+        return Point{m_y-1, m_x};
 
     case Direction::down:
-        if(m_y + 1 < BoardConfig::nbOfLines)
-            return Point{m_y+1, m_x};
-        break;
+        return Point{m_y+1, m_x};
     
     case Direction::left:
-        if(m_x > 0)
-            return Point{m_y, m_x-1} ;
-        break;
+        return Point{m_y, m_x-1} ;
 
     case Direction::right:
-        if(m_x + 1 < BoardConfig::nbOfCols)
-            return Point{m_y, m_x+1} ;
-        break;
+        return Point{m_y, m_x+1} ;
 
     default:
         break;

@@ -59,48 +59,38 @@ namespace UserInput
     }
 }
 
-// Your code goes here
-
-// Note: save your main() from the prior step, as you'll need it again in the next step
 int main()
 {
-    std::cout << std::boolalpha;
-    std::cout << (Point{ 1, 1 }.getAdjacentPoint(Direction::up)    == Point{ 0, 1 }) << '\n';
-    std::cout << (Point{ 1, 1 }.getAdjacentPoint(Direction::down)  == Point{ 2, 1 }) << '\n';
-    std::cout << (Point{ 1, 1 }.getAdjacentPoint(Direction::left)  == Point{ 1, 0 }) << '\n';
-    std::cout << (Point{ 1, 1 }.getAdjacentPoint(Direction::right) == Point{ 1, 2 }) << '\n';
-    std::cout << (Point{ 1, 1 } != Point{ 2, 1 }) << '\n';
-    std::cout << (Point{ 1, 1 } != Point{ 1, 2 }) << '\n';
-    std::cout << !(Point{ 1, 1 } != Point{ 1, 1 }) << '\n';
+    Board b{};
+    
+    for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
+    
+    std::cout << b;
 
+    for(int i{0} ; i < 4 ; i++)
+        std::cout << "Generating random direction..." << Direction::randomDirection() << '\n';
+
+
+    while(true)
+    {
+        char ops{UserInput::getCommandFromUser()};
+        
+        if(UserInput::isQuitCommand(ops))
+        {
+            std::cout << "Bye!\n";
+            break;
+        }
+        if(b.moveTile(UserInput::charToDirection(ops)))
+        {
+            for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
+            std::cout << b;
+        }
+        if(b.isSolved())
+        {
+            std::cout << "\n\nYou won!\n\n";
+            break;
+        }
+    }
+    
     return 0;
 }
-
-
-// int main()
-// {
-//     Board b{};
-    
-//     for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
-    
-//     std::cout << b;
-
-//     for(int i{0} ; i < 4 ; i++)
-//         std::cout << "Generating random direction..." << Direction::randomDirection() << '\n';
-
-
-//     while(true)
-//     {
-//         char ops{UserInput::getCommandFromUser()};
-        
-//         if(UserInput::isQuitCommand(ops))
-//         {
-//             std::cout << "Bye!\n";
-//             break;
-//         }
-        
-//         std::cout << "Valid command: " << UserInput::charToDirection(ops) << '\n';
-//     }
-    
-//     return 0;
-// }

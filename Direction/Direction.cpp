@@ -10,7 +10,7 @@ Direction::Directions Direction::getDirection() const
     return m_direction;
 }
 
-std::ostream& operator<< (std::ostream& stream, Direction& d)
+std::ostream& operator<< (std::ostream& stream, const Direction& d)
 {
     stream << (Direction::strDirections[static_cast<std::size_t>(d)]);
     
