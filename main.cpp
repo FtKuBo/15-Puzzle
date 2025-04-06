@@ -1,26 +1,75 @@
 #include <iostream>
 #include "Tile/Tile.h"
-
+#include "Board/Board.h"
+#include <limits> // for std::numeric_limits
 
 namespace GameSettings
 {
+    constexpr int g_consolelines(25);
+}
 
+namespace UserInput
+{
+    constexpr char validCommand[]{'w', 'a', 's', 'd', 'q'};
+
+    void ignoreLine()
+    {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    char getCharacter()
+    {
+        char input{};
+        std::cin >> input;
+        ignoreLine();
+        return input;
+    }
+
+    bool isValidCommand(char ucmd)
+    {
+        for(char cmd : validCommand)
+            if(cmd == ucmd) return true;
+        
+        return false;
+    }
+
+    char getCommandFromUser()
+    {
+        char ucmd{};
+        while(!isValidCommand(ucmd))
+            ucmd = getCharacter();
+        
+        return  ucmd;
+    }
+
+    bool isQuitCommand(char ucmd)
+    {
+        return ucmd == 'q';
+    }
 }
 
 
 int main()
 {
-    Tile tile1{ 10 };
-    Tile tile2{ 8 };
-    Tile tile3{ 0 }; // the missing tile
-    Tile tile4{ 1 };
+    Board b{};
+    
+    for(int i{0} ; i < GameSettings::g_consolelines; i++) std::cout << '\n';
+    
+    std::cout << b;
 
-    std::cout << "0123456789ABCDEF\n"; // to make it easy to see how many spaces are in the next line
-    std::cout << tile1 << tile2 << tile3 << tile4 << '\n';
-    std::cout << tile3 << '\n';
+    while(true)
+    {
+        char ops{UserInput::getCommandFromUser()};
 
-    std::cout << std::boolalpha << tile1.isEmpty() << ' ' << tile3.isEmpty() << '\n';
-    std::cout << "Tile 2 has number: " << tile2.getNum() << "\nTile 4 has number: " << tile4.getNum() << '\n';
+        std::cout << "Valid command: " << ops << '\n';
+ 
+        if(UserInput::isQuitCommand(ops))
+        {
+            std::cout << "Bye!\n";
+            break;
+        }
 
+    }
+    
     return 0;
 }
